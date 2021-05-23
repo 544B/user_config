@@ -1,0 +1,6 @@
+PROMPT="%(?.%{$fg[green]%}.%{$fg[blue]%})%(?!(%{$fg[magenta]%}๑ %{$fg[white]%}°口°%{$fg[magenta]%}๑%{$fg[green]%}%)!(๑ °口°๑%))%{${reset_color}%} { "
+PROMPT2='%{$fg[blue]$bg[black]%} [%n] %{${reset_color}%}>'
+
+RPROMPT="%{$fg[blue]$bg[black]%} [ %~ ] %{${reset_color}%} "
+SPROMPT="%{$fg[gray]%}%{$suggest%}( ',_>'%) { やれやれ、%{$fg[yellow]%} %B%r%b% %{$fg[gray]%} かね? )%{${reset_color}%}
+%{$fg[blue]%}<(; °Ａ°%)> %{${reset_color}%}{ そう!%{$fg[blue]%}(y)%{${reset_color}%}, 違う!%{$fg[red]%}(n)%{${reset_color}%} : "

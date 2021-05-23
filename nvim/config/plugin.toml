@@ -1,0 +1,59 @@
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+hook_add = '''
+  set background=dark
+  au MyAutoCmd VimEnter * nested colorscheme hybrid
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+    let g:lightline = { 'colorscheme': 'jellybeans' }
+    set laststatus=2
+    set noshowmode
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --bin'
+merged = '0'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+hook_add = '''
+  command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
+    \   fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
+
+  let g:fzf_action = {
+	\ 'ctrl-t': 'tab split',
+	\ 'ctrl-s': 'split',
+	\ 'ctrl-v': 'vsplit' }
+  nnoremap <Space>f :Files<CR>
+  nnoremap <Space>b :Buffers<CR>
+'''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+hook_add = '''
+  inoremap <silent><expr> <TAB>
+		\ pumvisible() ? "\<C-n>" :
+		\ <SID>check_back_space() ? "\<TAB>" :
+		\ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+
+  nnoremap <Space>e :CocCommand explorer --preset floating<CR>
+'''
